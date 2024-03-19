@@ -13,7 +13,7 @@ def generate_restaurant_name_and_items(cuisine):
     # Chain 1: Restaurant Name
     prompt_template_name = PromptTemplate(
         input_variables=['cuisine'],
-        template="I want to open a restaurant for {cuisine} food. Suggest a fancy name for this."
+        template="I want to know main manufacturing suppliers in {cuisine}. Provide top 3 supplier's names."
     )
 
     name_chain = LLMChain(llm=llm, prompt=prompt_template_name, output_key="restaurant_name")
@@ -21,7 +21,7 @@ def generate_restaurant_name_and_items(cuisine):
     # Chain 2: Menu Items
     prompt_template_items = PromptTemplate(
         input_variables=['restaurant_name'],
-        template="""Suggest some menu items for {restaurant_name}. Return it as a comma separated string"""
+        template="""Provide some manufacturing items of {restaurant_name}. Return it as a comma separated string"""
     )
 
     food_items_chain = LLMChain(llm=llm, prompt=prompt_template_items, output_key="menu_items")
