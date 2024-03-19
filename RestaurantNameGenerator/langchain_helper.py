@@ -21,7 +21,7 @@ def generate_supplier_name_and_items(country):
     # Chain 2: product Items
     prompt_template_items = PromptTemplate(
         input_variables=['supplier_name'],
-        template="""Provide some manufacturing items of {supplier_name}. Return it as a comma separated string"""
+        template="""Provide some manufacturing items and average production lead times of {supplier_name}. Return it as a comma separated string"""
     )
 
     food_items_chain = LLMChain(llm=llm, prompt=prompt_template_items, output_key="product_items")
