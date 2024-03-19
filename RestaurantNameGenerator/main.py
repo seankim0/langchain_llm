@@ -1,15 +1,15 @@
 import streamlit as st
 import langchain_helper
 
-st.title("Restaurant Name Generator")
+st.title("Supplier Main Products and Leed Times by Country")
 
-cuisine = st.sidebar.selectbox("Pick a Cuisine", ("Indian", "Italian", "Mexican", "Arabic", "American", "Chinese", "Korean"))
+country = st.sidebar.selectbox("Pick a Country", ("United States", "China", "Mexico", "South East Asia", "Eastern Europe", "Middle East and Africa", "India"))
 
-if cuisine:
-    response = langchain_helper.generate_restaurant_name_and_items(cuisine)
-    st.header(response['restaurant_name'].strip())
-    menu_items = response['menu_items'].strip().split(",")
-    st.write("**Menu Items**")
-    for item in menu_items:
+if country:
+    response = langchain_helper.generate_supplier_name_and_items(country)
+    st.header(response['supplier_name'].strip())
+    product_items = response['product_items'].strip().split(",")
+    st.write("**Main Products and Parts**")
+    for item in product_items:
         st.write("-", item)
 
