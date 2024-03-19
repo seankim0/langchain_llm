@@ -9,32 +9,32 @@ os.environ['OPENAI_API_KEY'] = openapi_key
 
 llm = OpenAI(temperature=0.7)
 
-def generate_restaurant_name_and_items(cuisine):
-    # Chain 1: Restaurant Name
+def generate_supplier_name_and_items(country):
+    # Chain 1: supplier Name
     prompt_template_name = PromptTemplate(
-        input_variables=['cuisine'],
-        template="I want to know main manufacturing suppliers in {cuisine}. Provide top 3 supplier's names."
+        input_variables=['country'],
+        template="I want to know main manufacturing suppliers in {country}. Provide top 3 supplier's names."
     )
 
-    name_chain = LLMChain(llm=llm, prompt=prompt_template_name, output_key="restaurant_name")
+    name_chain = LLMChain(llm=llm, prompt=prompt_template_name, output_key="supplier_name")
 
-    # Chain 2: Menu Items
+    # Chain 2: product Items
     prompt_template_items = PromptTemplate(
-        input_variables=['restaurant_name'],
-        template="""Provide some manufacturing items of {restaurant_name}. Return it as a comma separated string"""
+        input_variables=['supplier_name'],
+        template="""Provide some manufacturing items of {supplier_name}. Return it as a comma separated string"""
     )
 
-    food_items_chain = LLMChain(llm=llm, prompt=prompt_template_items, output_key="menu_items")
+    food_items_chain = LLMChain(llm=llm, prompt=prompt_template_items, output_key="product_items")
 
     chain = SequentialChain(
         chains=[name_chain, food_items_chain],
-        input_variables=['cuisine'],
-        output_variables=['restaurant_name', "menu_items"]
+        input_variables=['country'],
+        output_variables=['supplier_name', "product_items"]
     )
 
-    response = chain({'cuisine': cuisine})
+    response = chain({'country': country})
 
     return response
 
 if __name__ == "__main__":
-    print(generate_restaurant_name_and_items("Italian"))
+    print(generate_supplier_name_and_items("United States"))
