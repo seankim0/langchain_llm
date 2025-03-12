@@ -1,7 +1,7 @@
 # LangChain-Based LLM for Model Documentation Evaluation  
 
 > **Note:** This is a prototype and not the actual code used in production.
-> **Note:** Please reach out to me (shkim1106@gmail.com) if you need full-stack real-world best practice.
+> **Note:** Please reach out to me (seunghyk@tepper.cmu.edu) if you need full-stack real-world best practice.
 
 ## Overview  
 This repository contains an MVP version of a LangChain-based LLM model designed to streamline model documentation evaluation. The solution enhances efficiency by automating documentation analysis, reducing validation time by 25%, and improving documentation quality.  
